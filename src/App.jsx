@@ -7,19 +7,22 @@ import Home from './pages/Home';
 import OutfitDetail from './pages/OutfitDetail';
 import Wishlist from './pages/Wishlist';
 import ComingSoon from './pages/ComingSoon';
-import Explpre from './pages/Explore';
+import Explore from './pages/Explore';
+
 function App() {
   return (
     <WishlistProvider>
       <BrowserRouter>
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/explore" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
             <Route path="/outfit/:id" element={<OutfitDetail />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/chat" element={<ComingSoon feature="Chat" />} />
             <Route path="/create" element={<ComingSoon feature="Create" />} />
-            <Route path="/" element={<Explpre />} />
+            {/* Add a catch-all route */}
+            <Route path="*" element={<Home />} />
           </Routes>
         </AnimatePresence>
         <Toaster
