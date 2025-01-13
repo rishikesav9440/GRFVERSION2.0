@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, BookmarkIcon, PlusCircleIcon, ChatIcon, ExploreIcon } from './Icons'; // Ensure ExploreIcon is imported
+import { HomeIcon, BookmarkIcon, PlusCircleIcon, InformationCircleIcon, ExploreIcon } from './Icons'; // Ensure ExploreIcon is imported
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -10,8 +10,7 @@ export default function BottomNavigation() {
     { icon: <HomeIcon />, label: 'Feed', path: '/' },
     { icon: <BookmarkIcon />, label: 'Wishlist', path: '/wishlist' },
     { icon: <ExploreIcon />, label: 'Explore', path: '/explore' }, // New item added here
-    { icon: <PlusCircleIcon />, label: 'Create', path: '/create' },
-    { icon: <ChatIcon />, label: 'Chat', path: '/chat' },
+    { icon: <InformationCircleIcon />, label: 'About Us', path: '/chat' },
   ];
 
   return (

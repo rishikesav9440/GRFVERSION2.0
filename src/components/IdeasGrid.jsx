@@ -8,11 +8,12 @@ import { useWishlist } from '../context/WishlistContext';
 
 const ShimmerCard = () => (
   <div className="relative rounded-2xl overflow-hidden bg-white aspect-[3/4] shadow-sm">
-    <div className="w-full h-full bg-gray-200 animate-[shimmer_1.5s_infinite]" 
+    <div
+      className="w-full h-full bg-gray-200 animate-[shimmer_1.5s_infinite]" 
       style={{
         background: 'linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%)',
         backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite linear'
+        animation: 'shimmer 1.5s infinite linear',
       }}
     />
   </div>
@@ -59,9 +60,9 @@ export default function IdeasGrid() {
     navigate(`/outfit/${postId}`);
   };
 
-  const handleScrollToTop = () => {
-    sessionStorage.removeItem('scrollPosition');
-    window.scrollTo(0, 0);
+  const isToday = (dateTime) => {
+    const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+    return dateTime.startsWith(today);
   };
 
   if (loading && cachedPosts.length === 0) {
@@ -98,47 +99,64 @@ export default function IdeasGrid() {
       </motion.h2>
 
       <div className="grid grid-cols-2 gap-3">
-        {cachedPosts.map((post, index) => (
-          <motion.div 
-            key={post.id}
-            initial={isFirstLoad ? { opacity: 0, y: 20 } : {}}
-            animate={isFirstLoad ? { opacity: 1, y: 0 } : {}}
-            transition={isFirstLoad ? { delay: index * 0.1 } : {}}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative rounded-2xl overflow-hidden bg-white aspect-[3/4] shadow-sm"
-            onClick={() => handleNavigate(post.id)}
-          >
-            <img 
-              src={post.thumbnail} 
-              alt={`Outfit ${post.id}`} 
-              className="w-full h-full object-cover"
-            />
+        {cachedPosts.map((post, index) => {
+          const [isLoading, setIsLoading] = useState(true);
+
+          return (
             <motion.div 
-              className="absolute top-3 right-3 flex gap-2" 
-              onClick={e => e.stopPropagation()}
+              key={post.id}
+              initial={isFirstLoad ? { opacity: 0, y: 20 } : {}}
+              animate={isFirstLoad ? { opacity: 1, y: 0 } : {}}
+              transition={isFirstLoad ? { delay: index * 0.1 } : {}}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative rounded-2xl overflow-hidden bg-white aspect-[3/4] shadow-sm"
+              onClick={() => handleNavigate(post.id)}
             >
-              <motion.button 
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-1.5 bg-white rounded-full shadow-md"
-                onClick={() => {
-                  if (isInWishlist(post.id)) {
-                    removeFromWishlist(post.id);
-                  } else {
-                    addToWishlist(post);
-                  }
-                }}
+              {isLoading && (
+                <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+              )}
+              <img
+                src={post.thumbnail}
+                alt={`Outfit ${post.id}`}
+                className={`w-full h-full object-cover transition-opacity duration-300 ${
+                  isLoading ? 'opacity-0' : 'opacity-100'
+                }`}
+                onLoad={() => setIsLoading(false)}
+              />
+
+              {isToday(post.date_time) && (
+                <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+                  Added Today!
+                </div>
+              )}
+
+              <motion.div 
+                className="absolute top-3 right-3" 
+                onClick={(e) => e.stopPropagation()}
               >
-                {isInWishlist(post.id) ? (
-                  <HeartSolid className="w-5 h-5 text-red-500" />
-                ) : (
-                  <HeartOutline className="w-5 h-5" />
-                )}
-              </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="p-1.5 bg-white rounded-full shadow-md"
+                  onClick={() => {
+                    if (isInWishlist(post.id)) {
+                      removeFromWishlist(post.id);
+                    } else {
+                      addToWishlist(post);
+                    }
+                  }}
+                >
+                  {isInWishlist(post.id) ? (
+                    <HeartSolid className="w-5 h-5 text-red-500" />
+                  ) : (
+                    <HeartOutline className="w-5 h-5" />
+                  )}
+                </motion.button>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
