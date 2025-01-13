@@ -1,13 +1,8 @@
 {
-  "headers": [
+  "routes": [
     {
-      "source": "/.well-known/assetlinks.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        }
-      ]
+      "src": "/.well-known/assetlinks.json",
+      "dest": "/.well-known/assetlinks.json"
     }
   ]
 }
