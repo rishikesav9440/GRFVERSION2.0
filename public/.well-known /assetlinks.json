@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.grf.fashion",
+      "sha256_cert_fingerprints": [
+        "62:C5:67:49:B8:3D:94:B9:B5:66:B1:0E:95:C0:5C:67:42:76:21:17:5D:6E:51:13:A7:12:0D:D5:8F:22:89:46"
+      ]
+    }
+  }
+]
