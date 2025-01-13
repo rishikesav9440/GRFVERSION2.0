@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import BottomNavigation from '../components/BottomNavigation';
 
-export default function AboutUs() {
+export default function ComingSoon({ feature }) {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Reset scroll position to the top when the page is loaded
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -23,7 +18,7 @@ export default function AboutUs() {
           >
             <ArrowLeftIcon className="w-6 h-6" />
           </motion.button>
-          <h1 className="text-xl font-semibold">About Us</h1>
+          <h1 className="text-xl font-semibold">{feature}</h1>
         </div>
       </div>
       
@@ -32,33 +27,16 @@ export default function AboutUs() {
         animate={{ opacity: 1, y: 0 }}
         className="flex flex-col items-center justify-center min-h-screen px-4 pb-20"
       >
-        <div className="text-gray-400 mb-9">
-          <br /><br /><br /><br />
+        <div className="text-gray-400 mb-4">
+          <svg className="w-16 h-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
         </div>
-
-        <div className="max-w-2xl text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Story</h2>
-          <p className="text-gray-500 mb-6">
-            GetReadyFast was born out of a simple idea: to make shopping a smoother and more enjoyable experience. As a solo developer, I wanted to create a platform that makes it easy for people to find and buy outfits that match their style, all without the stress and complexity often associated with online shopping.
-          </p>
-          
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Why GetReadyFast?</h2>
-          <p className="text-gray-500 mb-6">
-            The vision behind GetReadyFast is to provide a simplified, user-friendly shopping experience that saves you time and effort. Whether you're looking for a quick outfit for an event or something casual for daily wear, we aim to make the entire process hassle-free and enjoyable. 
-          </p>
-
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Who Am I?</h2>
-          <p className="text-gray-500 mb-6">
-            I'm a passionate developer who believes in the power of technology to transform everyday tasks. My journey into fashion and app development led me to create GetReadyFast, and I'm constantly working to improve it with new features and improvements. This project is very personal to me, and I’m dedicated to making it the best it can be.
-          </p>
-
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-          <p className="text-gray-500">
-            We’d love to hear from you! If you have any feedback or suggestions, feel free to reach out via email at <a href="mailto:feedback@getreadyfast.in" className="text-blue-600">feedback@getreadyfast.in</a>.
-          </p>
-        </div>
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">{feature} Coming Soon</h1>
+        <p className="text-gray-500 text-center">
+          We're working on bringing you an amazing experience. Stay tuned!
+        </p>
       </motion.div>
-      
       <BottomNavigation />
     </div>
   );

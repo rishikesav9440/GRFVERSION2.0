@@ -6,7 +6,7 @@ import {
   HomeIcon as HeroHomeIcon,
   BookmarkIcon as HeroBookmarkIcon,
   PlusCircleIcon as HeroPlusCircleIcon,
-  InformationCircleIcon as HeroInformationCircleIcon, // New icon for About Us
+  ChatBubbleLeftIcon as HeroChatIcon,
   GlobeAltIcon as HeroGlobeAltIcon // Import the Globe icon for Explore
 } from '@heroicons/react/24/outline';
 
@@ -26,5 +26,5 @@ export const ShareIcon = () => <HeroShareIcon className="w-5 h-5" />;
 export const HomeIcon = () => <HeroHomeIcon className="w-6 h-6" />;
 export const BookmarkIcon = () => <HeroBookmarkIcon className="w-6 h-6" />;
 export const PlusCircleIcon = () => <HeroPlusCircleIcon className="w-6 h-6" />;
-export const InformationCircleIcon = () => <HeroInformationCircleIcon className="w-6 h-6" />; // Added InformationCircleIcon
-export const ExploreIcon = () => <HeroGlobeAltIcon className="w-6 h-6" />;
+export const ChatIcon = () => <HeroChatIcon className="w-6 h-6" />;
+export const ExploreIcon = () => <HeroGlobeAltIcon className="w-6 h-6" />; // Added ExploreIcon

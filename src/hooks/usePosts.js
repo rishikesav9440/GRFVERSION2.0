@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://backendbeta-neon.vercel.app/'
+  baseURL: 'http://localhost:5005'
 });
 
 // Cache for storing fetched posts

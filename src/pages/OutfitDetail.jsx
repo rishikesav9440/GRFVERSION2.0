@@ -120,14 +120,6 @@ export default function OutfitDetail() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
 
-  const handleBackClick = () => {
-    if (window.history.length > 2) {
-      navigate(-1);
-    } else {
-      navigate('/');
-    }
-  };
-
   return (
     <AnimatePresence mode="wait">
       {postLoading ? (
@@ -144,7 +136,7 @@ export default function OutfitDetail() {
           <div className="fixed top-0 left-0 right-0 bg-white z-10">
             <div className="flex items-center justify-between p-4">
               <motion.button 
-                onClick={handleBackClick}
+                onClick={() => navigate(-1)}
                 className="p-2 rounded-full hover:bg-gray-100"
                 whileTap={{ scale: 0.95 }}
               >

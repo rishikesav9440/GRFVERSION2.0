@@ -15,7 +15,7 @@ export default function Header() {
         />
 </div>
 
-
+      <SearchInput onClick={() => navigate('/chat')} />
     </div>
   );
 }
