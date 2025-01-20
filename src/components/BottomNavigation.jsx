@@ -2,9 +2,8 @@ import React from 'react';
 import { 
   Home, 
   Bookmark, 
-  Search, 
+  Globe, 
   Info,
-  PlusCircle 
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -13,8 +12,7 @@ const BottomNavigation = () => {
 
   const navItems = [
     { icon: Home, label: 'Feed', path: '/' },
-    { icon: Search, label: 'Explore', path: '/explore' },
-    { icon: PlusCircle, label: 'Create', path: '/create', className: 'text-purple-600' },
+    { icon: Globe, label: 'Explore', path: '/explore' },
     { icon: Bookmark, label: 'Wishlist', path: '/wishlist' },
     { icon: Info, label: 'About', path: '/chat' }
   ];
