@@ -20,14 +20,7 @@ const BottomNavigation = () => {
   ];
 
   return (
-    <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 safe-bottom" 
-      style={{ 
-        position: '-webkit-sticky',
-        paddingBottom: 'env(safe-area-inset-bottom)',
-        background: 'white'
-      }}
-    >
+    <nav className="fixed bottom-0 left-0 right-0 z-50">
       <div className="max-w-lg mx-auto bg-white border-t border-gray-200 shadow-lg">
         <div className="flex justify-between items-center px-6 py-2">
           {navItems.map(({ icon: Icon, label, path, className }) => {
