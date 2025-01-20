@@ -14,7 +14,7 @@ export default function BottomNavigation() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50" style={{ position: 'sticky', bottom: 0 }}>
       <div className="flex justify-between px-8 py-3">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
