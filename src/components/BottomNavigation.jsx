@@ -14,12 +14,20 @@ const BottomNavigation = () => {
   const navItems = [
     { icon: Home, label: 'Feed', path: '/' },
     { icon: Search, label: 'Explore', path: '/explore' },
+    { icon: PlusCircle, label: 'Create', path: '/create', className: 'text-purple-600' },
     { icon: Bookmark, label: 'Wishlist', path: '/wishlist' },
     { icon: Info, label: 'About', path: '/chat' }
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50">
+    <nav 
+      className="fixed bottom-0 left-0 right-0 z-50 safe-bottom" 
+      style={{ 
+        position: '-webkit-sticky',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        background: 'white'
+      }}
+    >
       <div className="max-w-lg mx-auto bg-white border-t border-gray-200 shadow-lg">
         <div className="flex justify-between items-center px-6 py-2">
           {navItems.map(({ icon: Icon, label, path, className }) => {
