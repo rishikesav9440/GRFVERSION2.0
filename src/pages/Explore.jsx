@@ -9,9 +9,9 @@ function Explore() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <div className="pb-20">
+
         <SwipeableIdeas />
-      </div>
+
       <BottomNavigation />
     </div>
   );
