@@ -10,9 +10,7 @@ function Home() {
       <Header />
 
       <IdeasGrid />
-      <div className="pb-20">
-        {/* Space for bottom navigation */}
-      </div>
+   
       <BottomNavigation />
     </div>
   );
