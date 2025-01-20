@@ -30,14 +30,15 @@ const ShimmerCard = styled.div`
 const CardContainer = styled.div`
   position: fixed;
   top: 4rem;
-  bottom: calc(4rem + env(safe-area-inset-bottom));
+  bottom: 4rem;
   left: 0;
   right: 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;
+  z-index: 1;  // Lower z-index than the navigation
+  padding-bottom: env(safe-area-inset-bottom);
 `;
 
 const CardStack = styled.div`
