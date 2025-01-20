@@ -33,12 +33,12 @@ const CardContainer = styled.div`
   bottom: 4rem;
   left: 0;
   right: 0;
+
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;  // Lower z-index than the navigation
-  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 0;  /* Just lowered this */
 `;
 
 const CardStack = styled.div`
