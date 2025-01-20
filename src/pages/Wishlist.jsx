@@ -1,17 +1,24 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeftIcon } from './Icons'; // Ensure ArrowLeftIcon is imported
+import { useWishlist } from '../context/WishlistContext';
+import OutfitGrid from '../components/OutfitGrid';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
 import BottomNavigation from '../components/BottomNavigation';
-import OutfitGrid from '../components/OutfitGrid'; // Ensure OutfitGrid is imported
 
-export default function Wishlist({ wishlist }) {
+export default function Wishlist() {
+  const { wishlist } = useWishlist();
   const navigate = useNavigate();
 
   return (
-    <motion.div className="flex flex-col min-h-screen">
-      <div className="fixed top-0 left-0 right-0 bg-white z-50 p-4 shadow">
-        <div className="flex items-center">
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-white pb-20 flex flex-col"
+    >
+      <div className="fixed top-0 left-0 right-0 bg-white z-10 border-b">
+        <div className="flex items-center p-4">
           <motion.button 
             onClick={() => navigate(-1)}
             className="p-2 rounded-full hover:bg-gray-100 mr-4"
