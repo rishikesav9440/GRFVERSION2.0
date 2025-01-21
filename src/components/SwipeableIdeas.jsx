@@ -29,45 +29,26 @@ const ShimmerCard = styled.div`
 `;
 const CardContainer = styled.div`
   position: fixed;
-  top: 4rem;
-  bottom: 4rem;
-  left: 0;
-  right: 0;
+
+
+
 
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 0;  /* Just lowered this */
+
+
+
+
 `;
 
 const CardStack = styled.div`
-  position: relative;
-  width: 90%;
-  max-width: 350px;
-  height: 85%;
-  margin: auto;
-  aspect-ratio: 3/4;
+  position: fixed;
 
-  @media (min-width: 768px) {
-    width: 85%;
-    max-width: 350px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 80%;
-    max-width: 350px;
-  }
-
-  @media (max-height: 667px) {
-    height: 80%;
-  }
 `;
 
 
 
 const Card = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   touch-action: none;
