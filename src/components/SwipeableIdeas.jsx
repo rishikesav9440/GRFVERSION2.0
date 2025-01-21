@@ -288,7 +288,7 @@ const StackedCards = () => {
           <img
             src={card.thumbnail}
             alt={`Outfit ${card.id}`}
-            className="w-full h-full object-cover"
+            className="object-cover"
             draggable="false"
           />
           {isTop && x.get() > 50 && (
