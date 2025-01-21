@@ -38,7 +38,7 @@ const ShimmerEffect = () => (
 
     <div className="p-4">
       <div className="h-6 w-48 bg-gray-200 rounded mb-3 animate-[shimmer_1.5s_infinite]" />
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {[...Array(4)].map((_, index) => (
           <div 
             key={index}
@@ -54,7 +54,7 @@ const ShimmerEffect = () => (
 
       <div className="mt-8">
         <div className="h-6 w-48 bg-gray-200 rounded mb-3 animate-[shimmer_1.5s_infinite]" />
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[...Array(4)].map((_, index) => (
             <div 
               key={index}
@@ -193,7 +193,7 @@ export default function OutfitDetail() {
             {items.length > 0 && (
               <>
                 <h2 className="text-lg font-semibold mb-3">Items in this outfit</h2>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   {items.map((item, index) => (
                     item.src && item.link && (
                       <motion.a
@@ -223,7 +223,7 @@ export default function OutfitDetail() {
             {recommendedPosts.length > 0 && (
               <div className="mt-8">
                 <h2 className="text-lg font-semibold mb-3">You might also like</h2>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {recommendedPosts.map((recommendedPost, index) => (
                     <motion.div 
                       key={recommendedPost.id}
