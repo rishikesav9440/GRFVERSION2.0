@@ -12,7 +12,7 @@ const BottomNavigation = () => {
   const location = useLocation();
   const navItems = [
     { icon: Home, label: 'Feed', path: '/' },
-    { icon: Globe, label: 'Explore', path: '/explore' },
+    { icon: Globe, label: 'Explore', path: 'https://www.google.com/' },
     { icon: Bookmark, label: 'Wishlist', path: '/wishlist' },
     { icon: Info, label: 'About', path: '/chat' }
   ];
