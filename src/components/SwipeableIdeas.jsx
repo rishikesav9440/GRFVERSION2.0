@@ -5,6 +5,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { motion, useMotionValue, useAnimation } from 'framer-motion';
 import styled from '@emotion/styled';
 
+// Shimmer animation for loading state
 const shimmerBackground = `
   background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%);
   background-size: 200% 100%;
@@ -20,25 +21,25 @@ const shimmerBackground = `
   }
 `;
 
-
+// Styled Components
 const ShimmerCard = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 1rem;
   ${shimmerBackground}
 `;
+
 const CardContainer = styled.div`
   position: fixed;
   top: 4rem;
   bottom: 4rem;
   left: 0;
   right: 0;
-
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 0;  /* Just lowered this */
+  z-index: 0;
 `;
 
 const CardStack = styled.div`
@@ -63,8 +64,6 @@ const CardStack = styled.div`
     height: 80%;
   }
 `;
-
-
 
 const Card = styled(motion.div)`
   position: absolute;
@@ -161,6 +160,35 @@ const StackedCards = () => {
   const controls = useAnimation();
   const x = useMotionValue(0);
 
+  // Save scroll position when leaving component
+  useEffect(() => {
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    
+    // Store current position before component mounts
+    const currentPosition = window.scrollY;
+    
+    return () => {
+      // Save position when component unmounts
+      sessionStorage.setItem('scrollPosition', currentPosition.toString());
+    };
+  }, []);
+
+  // Restore scroll position when navigating back
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+      // When component unmounts, restore the scroll position
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      if (savedPosition) {
+        window.requestAnimationFrame(() => {
+          window.scrollTo(0, parseInt(savedPosition, 10));
+        });
+      }
+    };
+  }, []);
+
   useEffect(() => {
     if (posts.length > 0) {
       const filtered = posts.filter(post => !displayedOutfits.includes(post.id));
@@ -169,15 +197,6 @@ const StackedCards = () => {
     }
   }, [posts]);
 
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
-
-  
   useEffect(() => {
     localStorage.setItem('displayedOutfits', JSON.stringify(displayedOutfits));
   }, [displayedOutfits]);
@@ -207,12 +226,10 @@ const StackedCards = () => {
     } else {
       controls.start({
         x: 0,
-        transition: { type: 'spring', stiffness: 300, damping: 20 }
+        transition: { type: "spring", stiffness: 300, damping: 20 }
       });
     }
   };
-
-  
 
   const handleStartOver = () => {
     setDisplayedOutfits([]);
@@ -270,7 +287,7 @@ const StackedCards = () => {
           x: isTop ? x : 0,
           y: offset,
           zIndex: filteredOutfits.length - index,
-          rotate: isTop ? x.get() * 0.05 : 0, // Add subtle rotation based on drag
+          rotate: isTop ? x.get() * 0.05 : 0,
         }}
         animate={isTop ? controls : undefined}
         drag={isTop ? 'x' : false}
