@@ -4,7 +4,7 @@ import { usePosts } from '../hooks/usePosts';
 import { useWishlist } from '../context/WishlistContext';
 import { motion, useMotionValue, useAnimation } from 'framer-motion';
 import styled from '@emotion/styled';
-import BottomNavigation from '../components/BottomNavigation';
+
 
 // Shimmer animation for loading state
 const shimmerBackground = `
@@ -331,7 +331,7 @@ const StackedCards = () => {
           .map((_, i) => renderCard(activeIndex + i))
           .reverse()}
       </CardStack>
-       <BottomNavigation />
+
     </CardContainer>
 
 
