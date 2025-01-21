@@ -331,7 +331,7 @@ const StackedCards = () => {
           .reverse()}
       </CardStack>
     </CardContainer>
-            <BottomNavigation />
+
 
     
   );
