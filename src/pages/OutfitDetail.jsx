@@ -168,7 +168,7 @@ export default function OutfitDetail() {
               <img 
                 src={post.thumbnail}
                 alt="Outfit detail"
-                className="w-full aspect-[3/4] lg:aspect-[4/5] object-cover rounded-none lg:rounded-xl"
+                className="w-1/2 aspect-[3/4] lg:aspect-[4/5] object-cover rounded-none lg:rounded-xl"
               />
             </motion.div>
 
