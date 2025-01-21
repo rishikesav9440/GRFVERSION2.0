@@ -50,6 +50,7 @@ export default function Wishlist() {
             <OutfitGrid outfits={wishlist} />
           </div>
         )}
+        <BottomNavigation />
       </div>
 
       {/* Bottom Navigation */}
