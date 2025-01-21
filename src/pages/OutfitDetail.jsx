@@ -28,7 +28,7 @@ const ShimmerEffect = () => (
 
     <div className="pt-16">
       <div 
-        className="w-full aspect-[3/4] bg-gray-200 animate-[shimmer_1.5s_infinite]"
+        className="w-full aspect-[3/4] bg-gray-200 animate-[shimmer_1.5s_infinite] md:max-w-2xl md:mx-auto"
         style={{
           background: 'linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%)',
           backgroundSize: '200% 100%'
@@ -36,7 +36,7 @@ const ShimmerEffect = () => (
       />
     </div>
 
-    <div className="p-4">
+    <div className="p-4 md:max-w-2xl md:mx-auto">
       <div className="h-6 w-48 bg-gray-200 rounded mb-3 animate-[shimmer_1.5s_infinite]" />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {[...Array(4)].map((_, index) => (
@@ -142,7 +142,7 @@ export default function OutfitDetail() {
           className="min-h-screen bg-white"
         >
           <div className="fixed top-0 left-0 right-0 bg-white z-10">
-            <div className="flex items-center justify-between p-4">
+            <div className="flex items-center justify-between p-4 md:max-w-2xl md:mx-auto">
               <motion.button 
                 onClick={handleBackClick}
                 className="p-2 rounded-full hover:bg-gray-100"
@@ -173,7 +173,7 @@ export default function OutfitDetail() {
             </div>
           </div>
 
-          <div className="pt-16">
+          <div className="pt-16 md:max-w-2xl md:mx-auto">
             <motion.img 
               src={post.thumbnail}
               alt="Outfit detail"
@@ -185,7 +185,7 @@ export default function OutfitDetail() {
           </div>
 
           <motion.div 
-            className="p-4"
+            className="p-4 md:max-w-2xl md:mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.15, delay: 0.1 }}
