@@ -28,7 +28,7 @@ const ShimmerEffect = () => (
 
     <div className="pt-16">
       <div 
-        className="w-full aspect-[3/4] bg-gray-200 animate-[shimmer_1.5s_infinite] md:max-w-2xl md:mx-auto"
+        className="w-full aspect-[3/4] bg-gray-200 animate-[shimmer_1.5s_infinite] md:max-w-md md:mx-auto"
         style={{
           background: 'linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%)',
           backgroundSize: '200% 100%'
@@ -109,10 +109,10 @@ export default function OutfitDetail() {
   };
 
   const items = [
-    { src: post.shirt_src, link: post.shirt_buy_link, type: 'Shirt' },
-    { src: post.pants_src, link: post.pants_buy_link, type: 'Pants' },
-    { src: post.shoes_src, link: post.shoes_buy_link, type: 'Shoes' },
-    { src: post.jacket_src, link: post.jacket_buy_link, type: 'Jacket' }
+    { src: post.shirt_src, link: post.shirt_buy_link, type: 'Item #1' },
+    { src: post.pants_src, link: post.pants_buy_link, type: 'Item #2' },
+    { src: post.shoes_src, link: post.shoes_buy_link, type: 'Item #3' },
+    { src: post.jacket_src, link: post.jacket_buy_link, type: 'Item #4' }
   ].filter(item => item.src && item.link);
 
   const recommendedPosts = posts
@@ -173,102 +173,106 @@ export default function OutfitDetail() {
             </div>
           </div>
 
-          <div className="pt-16 md:max-w-2xl md:mx-auto">
+          <div className="pt-16 md:flex md:justify-center md:gap-8 md:max-w-5xl md:mx-auto">
             <motion.img 
               src={post.thumbnail}
               alt="Outfit detail"
-              className="w-full aspect-[3/4] object-cover"
+              className="w-full aspect-[3/4] object-cover md:w-1/2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.15 }}
             />
+            <motion.div 
+              className="p-4 md:w-1/2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.15, delay: 0.1 }}
+            >
+              {items.length > 0 && (
+                <>
+                  <h2 className="text-lg font-semibold mb-3">Items in this outfit</h2>
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-2">
+                    {items.map((item, index) => (
+                      item.src && item.link && (
+                        <motion.a
+                          key={index}
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative aspect-square rounded-lg overflow-hidden"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <img
+                            src={item.src}
+                            alt={item.type}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white py-1 text-center text-xs md:hidden">
+                            {item.type}
+                          </div>
+                        </motion.a>
+                      )
+                    ))}
+                  </div>
+                </>
+              )}
+            </motion.div>
           </div>
 
-          <motion.div 
-            className="p-4 md:max-w-2xl md:mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15, delay: 0.1 }}
-          >
-            {items.length > 0 && (
-              <>
-                <h2 className="text-lg font-semibold mb-3">Items in this outfit</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                  {items.map((item, index) => (
-                    item.src && item.link && (
-                      <motion.a
-                        key={index}
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="relative aspect-square rounded-lg overflow-hidden"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <img
-                          src={item.src}
-                          alt={item.type}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white py-1 text-center text-xs">
-                          {item.type}
-                        </div>
-                      </motion.a>
-                    )
-                  ))}
-                </div>
-              </>
-            )}
-
-            {recommendedPosts.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-lg font-semibold mb-3">You might also like</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {recommendedPosts.map((recommendedPost, index) => (
+          {recommendedPosts.length > 0 && (
+            <motion.div 
+              className="p-4 md:max-w-5xl md:mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.15, delay: 0.1 }}
+            >
+              <h2 className="text-lg font-semibold mb-3">You might also like</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {recommendedPosts.map((recommendedPost, index) => (
+                  <motion.div 
+                    key={recommendedPost.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="relative rounded-2xl overflow-hidden bg-white aspect-[3/4] shadow-sm"
+                    onClick={() => navigate(`/outfit/${recommendedPost.id}`)}
+                  >
+                    <img 
+                      src={recommendedPost.thumbnail} 
+                      alt={`Outfit ${recommendedPost.id}`} 
+                      className="w-full h-full object-cover"
+                    />
                     <motion.div 
-                      key={recommendedPost.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="relative rounded-2xl overflow-hidden bg-white aspect-[3/4] shadow-sm"
-                      onClick={() => navigate(`/outfit/${recommendedPost.id}`)}
+                      className="absolute top-3 right-3 flex gap-2" 
+                      onClick={e => e.stopPropagation()}
                     >
-                      <img 
-                        src={recommendedPost.thumbnail} 
-                        alt={`Outfit ${recommendedPost.id}`} 
-                        className="w-full h-full object-cover"
-                      />
-                      <motion.div 
-                        className="absolute top-3 right-3 flex gap-2" 
-                        onClick={e => e.stopPropagation()}
+                      <motion.button 
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-1.5 bg-white rounded-full shadow-md"
+                        onClick={() => {
+                          if (isInWishlist(recommendedPost.id)) {
+                            removeFromWishlist(recommendedPost.id);
+                          } else {
+                            addToWishlist(recommendedPost);
+                          }
+                        }}
                       >
-                        <motion.button 
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          className="p-1.5 bg-white rounded-full shadow-md"
-                          onClick={() => {
-                            if (isInWishlist(recommendedPost.id)) {
-                              removeFromWishlist(recommendedPost.id);
-                            } else {
-                              addToWishlist(recommendedPost);
-                            }
-                          }}
-                        >
-                          {isInWishlist(recommendedPost.id) ? (
-                            <HeartSolid className="w-5 h-5 text-red-500" />
-                          ) : (
-                            <HeartOutline className="w-5 h-5" />
-                          )}
-                        </motion.button>
-                      </motion.div>
+                        {isInWishlist(recommendedPost.id) ? (
+                          <HeartSolid className="w-5 h-5 text-red-500" />
+                        ) : (
+                          <HeartOutline className="w-5 h-5" />
+                        )}
+                      </motion.button>
                     </motion.div>
-                  ))}
-                </div>
+                  </motion.div>
+                ))}
               </div>
-            )}
-          </motion.div>
+            </motion.div>
+          )}
 
           <ShareModal
             isOpen={isShareModalOpen}
