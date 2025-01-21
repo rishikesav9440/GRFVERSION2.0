@@ -316,8 +316,9 @@ const StackedCards = () => {
             <ActionLabel type="pass">PASS</ActionLabel>
           )}
         </CardContent>
+         <BottomNavigation />
       </Card>
-              <BottomNavigation />
+             
 
     );
   };
