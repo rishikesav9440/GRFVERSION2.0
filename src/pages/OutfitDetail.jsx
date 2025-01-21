@@ -142,7 +142,7 @@ export default function OutfitDetail() {
           className="min-h-screen bg-white"
         >
           <div className="fixed top-0 left-0 right-0 bg-white z-10">
-            <div className="flex items-center justify-between p-4 md:max-w-2xl md:mx-auto">
+            <div className="flex items-center justify-between p-4 md:max-w-7xl md:mx-auto">
               <motion.button 
                 onClick={handleBackClick}
                 className="p-2 rounded-full hover:bg-gray-100"
@@ -173,7 +173,7 @@ export default function OutfitDetail() {
             </div>
           </div>
 
-          <div className="pt-16 md:flex md:justify-center md:gap-8 md:max-w-5xl md:mx-auto">
+          <div className="pt-16 md:flex md:justify-center md:gap-8 md:max-w-7xl md:mx-auto">
             <motion.img 
               src={post.thumbnail}
               alt="Outfit detail"
@@ -222,7 +222,7 @@ export default function OutfitDetail() {
 
           {recommendedPosts.length > 0 && (
             <motion.div 
-              className="p-4 md:max-w-5xl md:mx-auto"
+              className="p-4 md:max-w-7xl md:mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.15, delay: 0.1 }}
