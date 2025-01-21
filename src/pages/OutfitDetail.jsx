@@ -191,7 +191,7 @@ export default function OutfitDetail() {
               {items.length > 0 && (
                 <>
                   <h2 className="text-lg font-semibold mb-3">Items in this outfit</h2>
-                  <div className="grid grid-cols-2 gap-2 md:grid-cols-2">
+                  <div className="grid grid-cols-2 gap-2 md:grid-cols-2 md:gap-4">
                     {items.map((item, index) => (
                       item.src && item.link && (
                         <motion.a
@@ -208,7 +208,7 @@ export default function OutfitDetail() {
                             alt={item.type}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white py-1 text-center text-xs md:hidden">
+                          <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white py-1 text-center text-xs md:text-sm">
                             {item.type}
                           </div>
                         </motion.a>
