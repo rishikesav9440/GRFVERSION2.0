@@ -19,7 +19,6 @@ const ShimmerCard = () => (
   </div>
 );
 
-// Check if it's actually the first visit to the app
 const isActualFirstVisit = () => {
   const hasVisited = localStorage.getItem('hasVisitedBefore');
   if (!hasVisited) {
@@ -37,7 +36,6 @@ export default function IdeasGrid() {
     const savedPosts = sessionStorage.getItem('cachedPosts');
     return savedPosts ? JSON.parse(savedPosts) : [];
   });
-  // Use localStorage instead of sessionStorage for first load state
   const [isFirstLoad] = useState(isActualFirstVisit);
   const [loadingStates, setLoadingStates] = useState({});
 
@@ -83,15 +81,15 @@ export default function IdeasGrid() {
 
   if (loading && cachedPosts.length === 0) {
     return (
-      <div className="px-4 mt-6">
+      <div className="px-4 sm:px-6 lg:px-8 mt-6">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[15px] font-bold mb-3 tracking-wide"
+          className="text-[15px] sm:text-base font-bold mb-3 tracking-wide"
         >
           IDEAS FOR YOU
         </motion.h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
           {[...Array(6)].map((_, index) => (
             <ShimmerCard key={index} />
           ))}
@@ -105,16 +103,16 @@ export default function IdeasGrid() {
   }
 
   return (
-    <div className="px-4 mt-6">
+    <div className="px-4 sm:px-6 lg:px-8 mt-6">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-[15px] font-bold mb-3 tracking-wide"
+        className="text-[15px] sm:text-base font-bold mb-3 tracking-wide"
       >
         IDEAS FOR YOU
       </motion.h2>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         {cachedPosts.map((post, index) => (
           <motion.div 
             key={post.id}
@@ -139,7 +137,7 @@ export default function IdeasGrid() {
             />
 
             {isToday(post.date_time) && (
-              <div className="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">
+              <div className="absolute top-3 left-3 bg-red-500 text-white text-xs sm:text-sm font-semibold px-2 py-1 rounded-full">
                 Added Today!
               </div>
             )}
