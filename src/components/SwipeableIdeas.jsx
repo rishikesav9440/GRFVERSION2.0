@@ -316,7 +316,7 @@ const StackedCards = () => {
             <ActionLabel type="pass">PASS</ActionLabel>
           )}
         </CardContent>
-         <BottomNavigation />
+        
       </Card>
              
 
@@ -331,6 +331,7 @@ const StackedCards = () => {
           .map((_, i) => renderCard(activeIndex + i))
           .reverse()}
       </CardStack>
+       <BottomNavigation />
     </CardContainer>
 
 
